@@ -1,8 +1,10 @@
 import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
 import Navbar from './components/Navbar';
 import Home from './pages/Home';
-import Books from './pages/Books';
 import BookDetails from './pages/BookDetails';
+import React from 'react';
+
+const Books = React.lazy(() => import('./pages/Books'));
 
 function App() {
   return (
