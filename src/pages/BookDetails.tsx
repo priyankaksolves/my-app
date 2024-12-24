@@ -12,7 +12,7 @@ interface books {
 
 const BookDetails = () => {
   const { bookId } = useParams();
-  const book = books.find((b) => b.id === parseInt(bookId));
+  const book = books.find((b) => b.id === parseInt(bookId ?? ''));
 
   return (
     <div>
