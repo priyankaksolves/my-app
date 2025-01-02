@@ -1,43 +1,45 @@
-import React, { createContext, useState, ReactNode } from "react";
+import { createContext, useState, useContext, ReactNode } from 'react';
 
-interface ThemeContextType {
-  theme: "light" | "dark";
-  toggleTheme: () => void;
-  themeStyles: {
-    light: React.CSSProperties;
-    dark: React.CSSProperties;
-  };
-}
-
-const ThemeContext = createContext<ThemeContextType | undefined>(undefined);
-
-interface ThemeProviderProps {
-  children: ReactNode;
-}
-
-export const ThemeProvider: React.FC<ThemeProviderProps> = ({ children }) => {
-  const [theme, setTheme] = useState<"light" | "dark">("light");
-
-  const ToggleTheme = () => {
-    setTheme((prevTheme) => (prevTheme === "light" ? "dark" : "light"));
-  };
-
-  const themeStyles = {
-    light: { backgroundColor: "#f9f9f9", color: "#333" },
-    dark: { backgroundColor: "#333", color: "#f9f9f9" },
-  };
-
-  return (
-    <ThemeContext.Provider value={{ theme, toggleTheme: ToggleTheme, themeStyles }}>
-      {children}
-    </ThemeContext.Provider>
-  );
+// Initial context value
+const initialContext = {
+  theme: 'light',  // Default theme
+  toggleTheme: () => {},  // Default toggle function (empty, will be updated by the provider)
 };
 
-export const UseTheme = (): ThemeContextType => {
-  const context = React.useContext(ThemeContext);
-  if (!context) {
-    throw new Error("useTheme must be used within a ThemeProvider");
-  }
-  return context;
+// Create the Theme Context
+const ThemeContext = createContext(initialContext);
+
+// Custom Hook to use the Theme Context
+export const UseTheme = () => {
+  return useContext(ThemeContext);
+};
+
+// Theme Context Provider Component
+interface ThemeProviderProps {
+  children: ReactNode;  // Explicitly type the 'children' prop
+}
+
+// Theme Context Provider Component
+export const ThemeProvider: React.FC<ThemeProviderProps> = ({ children }) => {
+  const [theme, setTheme] = useState('light'); // default theme is light
+
+  const toggleTheme = () => {
+    setTheme((prevTheme) => (prevTheme === 'light' ? 'dark' : 'light'));
+  };
+
+  const themeStyles = theme === 'light' ? {
+    backgroundColor: '#ffffff',
+    color: '#000000',
+  } : {
+    backgroundColor: '#333333',
+    color: '#ffffff',
+  };
+
+    // Define theme styles for light and dark themes
+
+  return (
+    <ThemeContext.Provider value={{ theme, toggleTheme }}>
+      <div style={themeStyles}>{children}</div> {/* Apply theme styles dynamically */}
+      </ThemeContext.Provider>
+  );
 };

@@ -70,3 +70,63 @@ button:focus-visible {
   border: 2px solid;
   padding: 25px;
 }
+
+/* Light theme */
+body.light {
+  background-color: #ffffff;
+  color: #000000;
+}
+
+body.light .app {
+  background-color: #f9f9f9;
+}
+
+body.light .theme-toggler {
+  background-color: #ddd;
+  color: #000;
+}
+
+body.light .theme-toggler:hover {
+  background-color: #ccc;
+}
+
+/* Dark theme */
+body.dark {
+  background-color: #333333;
+  color: #ffffff;
+}
+
+body.dark .app {
+  background-color: #444444;
+}
+
+body.dark .theme-toggler {
+  background-color: #666666;
+  color: #fff;
+}
+
+body.dark .theme-toggler:hover {
+  background-color: #555555;
+}
+
+.bookstore ul {
+  list-style: none;
+  padding: 0;
+}
+
+.bookstore li {
+  padding: 10px;
+  border-bottom: 1px solid #ccc;
+}
+
+.bookstore h2 {
+  font-size: 2rem;
+}
+
+.bookstore h3 {
+  font-size: 1.5rem;
+}
+
+.bookstore p {
+  font-size: 1rem;
+}

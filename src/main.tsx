@@ -1,10 +1,9 @@
 import { StrictMode } from 'react'
 import { createRoot } from 'react-dom/client'
 import './index.css'
-import BookList from './components/BookList.tsx'
 import ThemeToggler from './components/Context/BookStore/ThemeToggler.tsx'
 import { ThemeProvider } from './components/Context/BookStore/ThemeContext.tsx'
-import App from './App.tsx'
+import BookStore from './components/Context/BookStore/Bookstore.tsx'
 
 createRoot(document.getElementById('root')!).render(
   <StrictMode>
@@ -18,9 +17,11 @@ createRoot(document.getElementById('root')!).render(
 
     {/* <Banglore/> */}
     <ThemeProvider>
-    <App />
-    <ThemeToggler />
-    <BookList />
+      <div className="app">
+        <h1>Welcome to the Bookstore</h1>
+        <ThemeToggler />
+        <BookStore />
+      </div>
     </ThemeProvider>
 
 
